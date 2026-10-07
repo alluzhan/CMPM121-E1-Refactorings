@@ -41,15 +41,14 @@
       // Pick the living enemy with the most health remaining.
       for (const enemy of enemies) {
         // If health is zero, that enemy is not alive.
-        if (enemy.health <= 0)
-        {
+        if (enemy.health <= 0) {
           continue;
         }
-        // Keep the earliest enemy if two have equal health.
-          if (target && target.health > enemy.health) {
-          continue;
-          }
+        // Replace the target if there is no current target or if the enemy has greater than or equal health to the current target.
+        // If there is a tie the enemy that appears later in the list wins.
+        if (!target || enemy.health >= target.health) {
           target = enemy;
+        }
       }
       return target;
     }
